@@ -1,0 +1,7 @@
+Flask
+requests
+python-dotenv
+langchain
+langchain-openai
+langchain-core
+rich
