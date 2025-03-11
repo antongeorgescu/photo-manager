@@ -1,4 +1,4 @@
-# Weather Agent Project
+# Single Agent Sample Project
 
 This project implements a simple weather agent that retrieves and processes weather data. The agent interacts with various components to provide weather-related functionalities.
 
