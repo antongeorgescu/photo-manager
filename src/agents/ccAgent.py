@@ -43,21 +43,21 @@ def add_communication_info(studentid :int, phoneNumber:str, email:str, preferenc
     communication = {"studentid": studentid, "phoneNumber": phoneNumber, "email": email, "preference": preference}
     return json.dumps(communication)
 
-# @tool
-# def create_loan(studentid:int, loaninfo: List[str], collegecode:str, programofstudy:str) -> str:
-#     """Assign to a non-registered student a loan, a college and a program of study."""
-#     log_tool_usage("create_loan", {studentid,json.dumps(loaninfo),collegecode,programofstudy})
-#     return json.dumps(loaninfo)
+@tool
+def create_loan(studentid:int, loaninfo: List[str], collegecode:str, programofstudy:str) -> str:
+    """Assign to a non-registered student a loan, a college and a program of study."""
+    log_tool_usage("create_loan", {studentid,json.dumps(loaninfo),collegecode,programofstudy})
+    return json.dumps(loaninfo)
 
-# @tool
-# def find_student_by_lastname(lastname :str) -> str:
-#     """Retrieve student information based on likeness to last name."""
-#     log_tool_usage("find_student_by_lastname", lastname)
-#     return lastname
+@tool
+def find_student_by_lastname(lastname :str) -> str:
+    """Retrieve student information based on likeness to last name."""
+    log_tool_usage("find_student_by_lastname", lastname)
+    return lastname
 
   
-# tools = [create_nonregistered_student, add_communication_info,create_loan,find_student_by_lastname]
-tools = [create_nonregistered_student, add_communication_info]
+tools = [create_nonregistered_student, add_communication_info,create_loan,find_student_by_lastname]
+
 llm_with_tools = llm.bind_tools(tools)
 
 MEMORY_KEY = "chat_history"
