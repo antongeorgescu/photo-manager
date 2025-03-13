@@ -1,81 +1,76 @@
-# Single Agent Sample Project
+# Call Centre Agent Assistant
 
-This project implements a simple weather agent that retrieves and processes weather data. The agent interacts with various components to provide weather-related functionalities.
+A conversational AI assistant for call center operations that helps manage student information, loans, and communications using Azure OpenAI and LangChain.
+
+## Features
+
+- Create and manage non-registered student profiles
+- Handle student communication information
+- Process student loan applications
+- Search for students by last name
+- Generate synthetic data for testing
+- Interactive command-line interface with Rich text formatting
+
+## Prerequisites
+
+- Python 3.x
+- Azure OpenAI API access
+- Required environment variables:
+  - `AZURE_OPENAI_API_KEY`
+  - `AZURE_OPENAI_ENDPOINT`
+  - `AZURE_OPENAI_DEPLOYMENT_NAME`
+  - `AZURE_OPENAI_API_VERSION`
+
+## Installation
+
+1. Clone the repository
+2. Install dependencies:
+```sh
+pip install -r requirements.txt
+```
+
+## Usage
+
+1. Set up your environment variables in `.env` file
+2. Run the application:
+```sh
+python src/ccagent.py
+```
+
+### Available Commands
+
+- `/help` - Show help message
+- `/exit` - Exit the application
+
+### Example Questions
+
+- Create a non-registered student with firstname, lastname and home address
+- Add communication info to a non-registered student
+- Create a loan for a non-registered student with loan info, college code and program of study
+- Find a student by last name
 
 ## Project Structure
 
 ```
-weather-agent
-├── src
-│   ├── agents
-│   │   └── weatherAgent.py
-│   ├── config
-│   │   └── config.py
-│   ├── services
-│   │   └── weatherService.py
-│   ├── tools
-│   │   └── weatherTools.py
-│   └── utils
-│       └── logger.py
-├── tests
-│   ├── __init__.py
-│   └── test_weatherAgent.py
-├── .env
-├── requirements.txt
-└── README.md
+.
+├── src/
+│   ├── ccagent.py          # Main application file
+│   ├── tools/
+│   │   ├── ccactions.py    # Core business actions
+│   │   └── synthdata.py    # Synthetic data generation
+│   └── utils/
+│       └── logger.py       # Logging utilities
+├── requirements.txt        # Project dependencies
+└── .env                   # Environment variables (not in repo)
 ```
 
-## Setup Instructions
+## Dependencies
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   cd weather-agent
-   ```
+Key dependencies include:
+- langchain
+- openai
+- rich (for CLI formatting)
+- faker (for synthetic data)
+- python-dotenv
 
-2. **Create a virtual environment:**
-   ```bash
-   python -m venv venv
-   ```
-
-3. **Activate the virtual environment:**
-   - On Windows:
-     ```bash
-     venv\Scripts\activate
-     ```
-   - On macOS/Linux:
-     ```bash
-     source venv/bin/activate
-     ```
-
-4. **Install the required dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-5. **Set up environment variables:**
-   Create a `.env` file in the root directory and add your configuration settings, such as API keys.
-
-## Usage
-
-To run the weather agent, execute the following command:
-
-```bash
-python src/agents/weatherAgent.py
-```
-
-## Testing
-
-To run the tests for the weather agent, use the following command:
-
-```bash
-python -m unittest discover -s tests
-```
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any enhancements or bug fixes.
-
-## License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
+For a complete list, see `requirements.txt`.
