@@ -1,3 +1,5 @@
+# tools/synthdata.py
+
 import pandas as pd
 import random
 from faker import Faker
@@ -8,6 +10,9 @@ from dateutil.relativedelta import relativedelta
 from langchain.agents import tool
 import json
 from typing import Any, List
+
+# import sys
+# sys.path.append('../utils')
 from utils.logger import log_tool_usage
 
 # Initialize Faker for Canadian locale
@@ -49,6 +54,12 @@ banks = {
     'Royal Bank of Canada': 'RBC',
     'Canadian Imperial Bank of Commerce': 'CIBC',
     'Bank of Montreal': 'BMO'
+}
+
+# Define enrollment types
+enrollments = {
+    'National Student Loans': 'NSL',
+    'Canadian Apprenticeship Loans': 'CAL'
 }
 
 @tool

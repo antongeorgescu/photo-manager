@@ -74,7 +74,7 @@ agent = (
     | llm_with_tools
     | OpenAIToolsAgentOutputParser()
 )
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)
+agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 
 async def main():
     chat_history = []
@@ -85,7 +85,7 @@ async def main():
     def display_header():
         console.print(Panel.fit(
             "[bold blue]Call Centre Agent Assistant[/bold blue]\n"
-            "[italic]Ask me anything about the weather![/italic]",
+            "[italic]Ask me anything about managing a student loan![/italic]",
             border_style="cyan"
         ))
 

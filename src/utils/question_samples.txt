@@ -1,0 +1,4 @@
+1. Create a non registered student and add a communication profile with preference set to SMS
+2. Create a synthetically generated loan of 45,000 CAD for the previously created student and set the disbursement date on March 5, 2025
+3. Retrieve full information of the student created previosly by searching on his last name
+3. 
