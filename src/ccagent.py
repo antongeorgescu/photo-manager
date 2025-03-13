@@ -22,7 +22,8 @@ from rich.markdown import Markdown
 import sys
 sys.path.append('/src')
 
-from tools import cctools
+from tools import ccactions, synthdata
+from utils import logger
 
 llm = AzureChatOpenAI(
     openai_api_key = os.getenv("AZURE_OPENAI_API_KEY"),
@@ -32,7 +33,17 @@ llm = AzureChatOpenAI(
     max_retries = 3
 )
   
-tools = [cctools.create_nonregistered_student, cctools.add_communication_info,cctools.create_loan,cctools.find_student_by_lastname]
+tools = [
+    ccactions.create_nonregistered_student, 
+    ccactions.add_communication_info,
+    ccactions.create_loan,
+    ccactions.find_student_by_lastname,
+    synthdata.generate_student_profile,
+    synthdata.generate_loan_info,
+    synthdata.generate_study_info,
+    synthdata.generate_bank_info,
+    synthdata.generate_communication_info,  
+]
 
 llm_with_tools = llm.bind_tools(tools)
 
@@ -117,7 +128,7 @@ async def main():
                 ]
             )
             print("\nTools Used:")
-            for usage in cctools.tool_usage_log:
+            for usage in logger.tool_usage_log:
                 print(f"Tool: {usage['tool']}, Input: {usage['input']}")
                 
             # print("\n\n Message:\n", result["output"])

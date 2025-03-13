@@ -3,12 +3,8 @@
 from langchain.agents import tool
 import json
 from typing import Any, List
+from utils.logger import log_tool_usage
 
-tool_usage_log = []
-
-def log_tool_usage(tool_name: str, input_data: Any):
-    """Logs the tool used and its input."""
-    tool_usage_log.append({"tool": tool_name, "input": input_data})
 
 @tool
 def create_nonregistered_student(firstname:str,lastname:str,homeAddress:str) -> str:

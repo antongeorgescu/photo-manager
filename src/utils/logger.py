@@ -1,4 +1,5 @@
 import logging
+from typing import Any
 
 # Configure the logger
 logging.basicConfig(
@@ -23,3 +24,9 @@ def log_error(message):
 def log_debug(message):
     """Log a debug message."""
     logger.debug(message)
+
+tool_usage_log = []
+
+def log_tool_usage(tool_name: str, input_data: Any):
+    """Logs the tool used and its input."""
+    tool_usage_log.append({"tool": tool_name, "input": input_data})
