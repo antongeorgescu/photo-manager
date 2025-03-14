@@ -22,7 +22,7 @@ from rich.markdown import Markdown
 import sys
 sys.path.append('/src')
 
-from tools import ccactions, synthdata
+from tools import apirequests, synthdata
 from utils import logger
 
 llm = AzureChatOpenAI(
@@ -34,15 +34,18 @@ llm = AzureChatOpenAI(
 )
   
 tools = [
-    ccactions.create_nonregistered_student, 
-    ccactions.add_communication_info,
-    ccactions.create_loan,
-    ccactions.find_student_by_lastname,
+    apirequests.create_nonregistered_student, 
+    apirequests.add_communication_info,
+    apirequests.create_loan,
+    apirequests.find_student_by_lastname,
+    apirequests.make_loan_payment,
     synthdata.generate_student_profile,
     synthdata.generate_loan_info,
     synthdata.generate_study_info,
     synthdata.generate_bank_info,
     synthdata.generate_communication_info,  
+    synthdata.generate_random_education_institution,
+    synthdata.generate_random_program_of_study,
 ]
 
 llm_with_tools = llm.bind_tools(tools)

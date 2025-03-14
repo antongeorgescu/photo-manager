@@ -14,6 +14,7 @@ from typing import Any, List
 # import sys
 # sys.path.append('../utils')
 from utils.logger import log_tool_usage
+import os
 
 fake = Faker('en_CA')
 
@@ -152,3 +153,18 @@ def generate_communication_info() -> dict:
     log_tool_usage("generate_communication_info", communication_info)
     return communication_info
 
+@tool
+def generate_random_education_institution() -> int:
+    """Generate random education institutiod id."""
+    min_val, max_val = map(int, os.getenv("RANGECOLLEGEID").split(','))
+    result = random.randint(min_val, max_val)
+    log_tool_usage("generate_random_education_institution", result)
+    return result
+
+@tool
+def generate_random_program_of_study() -> int:
+    """Generate random program of study id."""
+    min_val, max_val = map(int, os.getenv("RANGEPROGRAMOFSTUDY").split(','))
+    result = random.randint(min_val, max_val)
+    log_tool_usage("generate_random_program_of_study", result)
+    return result
