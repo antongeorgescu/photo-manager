@@ -1,4 +1,4 @@
 1. Generate with synthetic data a non registered student and add a communication profile with preference set to SMS. Keep the newly created student id and last name for further use.
-2. For the student created previously, add a synthetically generated loan of 35,000 CAD, set enrollment type to 'NSL', disbursement date on September 20, 2024,a random education institution and a random program of study. Retail the loan id for subsequent use.
-4. Make a payment of 123CAD monthly against the loan with the retained loan id
+2. For the student created previously, add a synthetically generated loan of 35,000 CAD, set enrollment type to 'NSL', disbursement date on September 20, 2024,a random education institution and a random program of study. Hold on returned loan info id for subsequent use.
+4. Make a payment of 123CAD monthly against the loan with the retained loan info id
 3. Retrieve full information of the student created initially by searching on his last name retained at the first step
