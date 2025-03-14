@@ -15,7 +15,6 @@ from typing import Any, List
 # sys.path.append('../utils')
 from utils.logger import log_tool_usage
 
-# Initialize Faker for Canadian locale
 fake = Faker('en_CA')
 
 # Define the provinces and cities

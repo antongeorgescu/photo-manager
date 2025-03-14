@@ -32,3 +32,15 @@ tool_usage_log = []
 def log_tool_usage(tool_name: str, input_data: Any):
     """Logs the tool used and its input."""
     tool_usage_log.append({"tool": tool_name, "input": input_data})
+
+# import babel
+# all_ids = babel.localedata.locale_identifiers()
+# print(all_ids)
+
+from faker import Faker
+fake = Faker('en_CA')
+student_profile = {
+    'Name': fake.name(),
+    'Home Address': fake.street_address() + ', ' + fake.city() + ', ' + fake.province() + ', ' + fake.postalcode()
+}
+print(student_profile)  # Example usage of Faker

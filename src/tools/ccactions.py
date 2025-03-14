@@ -71,7 +71,7 @@ def find_student_by_lastname(lastname :str) -> str:
     """Retrieve student information based on likeness to last name."""
     log_tool_usage("find_student_by_lastname", lastname)
     
-    url = f"https://student-loan-api.azurewebsites.net/api/students/{lastname}"
+    url = f"https://student-loan-api.azurewebsites.net/api/students/lastname/{lastname}"
     
     try:
         response = requests.get(url)
