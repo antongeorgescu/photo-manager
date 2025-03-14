@@ -22,6 +22,12 @@ from rich.markdown import Markdown
 import sys
 sys.path.append('/src')
 
+import logging
+logging.getLogger('faker.factory').setLevel(logging.ERROR)
+logging.getLogger('asyncio').setLevel(logging.ERROR)
+# Suppress detailed "Thinking" messages
+logging.getLogger('langchain.agent').setLevel(logging.WARNING)
+
 from tools import apirequests, synthdata
 from utils import logger
 

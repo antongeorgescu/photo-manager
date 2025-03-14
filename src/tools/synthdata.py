@@ -1,8 +1,8 @@
 # tools/synthdata.py
-
 import pandas as pd
 import random
 from faker import Faker
+
 from datetime import datetime, timedelta
 import numpy as np
 from dateutil.relativedelta import relativedelta
@@ -17,6 +17,9 @@ from utils.logger import log_tool_usage
 import os
 
 fake = Faker('en_CA')
+# Suppress the output by setting show_feature_list to False
+if hasattr(fake, '_show_feature_list'):
+    fake._show_feature_list = False
 
 # Define the provinces and cities
 provinces_cities = {
