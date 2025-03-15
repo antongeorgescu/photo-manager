@@ -1,4 +1,6 @@
 1. Generate with synthetic data a non registered student and add a communication profile with preference set to SMS. Keep the newly created student id and last name for further use.
-2. For the student created previously, add a synthetically generated loan of 35,000 CAD, set enrollment type to 'NSL', disbursement date on September 20, 2024,a random education institution and a random program of study. Hold on returned loan info id for subsequent use.
-4. Make a payment of 123CAD monthly against the loan with the retained loan info id
-3. Retrieve full information of the student created initially by searching on his last name retained at the first step
+2. For the student created previously, add a synthetically generated loan of 36,000 CAD, set enrollment type to 'CAL', disbursement date on July 20, 2023,a random education institution and a random program of study. Hold on returned loan info id for subsequent use.
+3. Make a payment of 143CAD monthly against the loan with the retained loan info id
+4. Retrieve full information of the student created initially by searching on his last name retained at the first step
+5. Generate a home address, as a random choice between an American and Canadian location
+6. If it's a Canadian address, update the student home address with it and retrieve full information of the student; if not display an error message 

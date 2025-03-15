@@ -11,6 +11,8 @@ from langchain.agents import tool
 import json
 from typing import Any, List
 
+import re
+
 # import sys
 # sys.path.append('../utils')
 from utils.logger import log_tool_usage
@@ -63,6 +65,15 @@ banks = {
 enrollments = {
     'National Student Loans': 'NSL',
     'Canadian Apprenticeship Loans': 'CAL'
+}
+
+# Add these constants at the top with other address data
+us_states = {
+    'NY': {'name': 'New York', 'cities': ['New York City', 'Buffalo', 'Albany']},
+    'CA': {'name': 'California', 'cities': ['Los Angeles', 'San Francisco', 'San Diego']},
+    'TX': {'name': 'Texas', 'cities': ['Houston', 'Austin', 'Dallas']},
+    'FL': {'name': 'Florida', 'cities': ['Miami', 'Orlando', 'Tampa']},
+    'IL': {'name': 'Illinois', 'cities': ['Chicago', 'Springfield', 'Aurora']}
 }
 
 @tool
@@ -170,4 +181,68 @@ def generate_random_program_of_study() -> int:
     min_val, max_val = map(int, os.getenv("RANGEPROGRAMOFSTUDY").split(','))
     result = random.randint(min_val, max_val)
     log_tool_usage("generate_random_program_of_study", result)
+    return result
+
+@tool
+def generate_random_address(country: str = None) -> dict:
+    """
+    Generate a random address for either Canada or USA.
+    Args:
+        country: Optional - 'CA' for Canada, 'US' for USA. If None, randomly chooses.
+    Returns:
+        Dictionary containing address details
+    """
+    if not country:
+        country = random.choice(['CA', 'US'])
+
+    street_number = random.randint(1, 9999)
+    street_name = fake.street_name()
+    
+    if country == 'CA':
+        region_data = provinces_cities
+        postal_code = fake.postcode()
+    else:  # US
+        region_data = us_states
+        postal_code = f"{random.randint(10000, 99999)}"
+
+    region_code = random.choice(list(region_data.keys()))
+    city = random.choice(region_data[region_code]['cities'])
+    
+    address = {
+        'street_number': street_number,
+        'street_name': street_name,
+        'city': city,
+        'region_code': region_code,
+        'region_name': region_data[region_code]['name'],
+        'postal_code': postal_code,
+        'country': 'Canada' if country == 'CA' else 'United States',
+        'formatted_address': f"{street_number} {street_name}, {city}, {region_code} {postal_code}"
+    }
+    
+    log_tool_usage("generate_random_address", address)
+    return address
+
+@tool
+def is_canadian_address(address: str) -> bool:
+    """
+    Check if an address is Canadian based on province and postal code format.
+    Returns True if address is Canadian, False otherwise.
+    """
+    # Canadian postal code pattern: A1A 1A1 or A1A1A1
+    postal_pattern = r'[A-Z]\d[A-Z]\s*\d[A-Z]\d'
+    
+    # Get list of all province codes and names
+    province_codes = list(provinces_cities.keys())
+    province_names = [prov['name'] for prov in provinces_cities.values()]
+    
+    # Check if address contains a valid province
+    has_province = any(code in address.upper() for code in province_codes) or \
+                  any(name in address for name in province_names)
+    
+    # Check if address contains valid postal code format
+    has_postal = bool(re.search(postal_pattern, address.upper()))
+    
+    result = has_province and has_postal
+    log_tool_usage("is_canadian_address", {"address": address, "is_canadian": result})
+    
     return result

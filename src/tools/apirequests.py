@@ -85,6 +85,25 @@ def make_loan_payment(loanid:int, payamount:float) -> str:
         return f"Error creating student: {str(e)}"
 
 @tool
+def update_student_address(studentid:int, homeaddress:str) -> str:
+    """Update a student home address based on student id."""
+    
+    url = f"{BASE_URL}/student/update/address"
+
+    payload = {
+        "studentid":studentid,
+        "homeAddress": homeaddress
+    }
+    
+    try:
+        response = requests.put(url, json=payload)
+        response.raise_for_status()  # Raises an HTTPError for bad responses (4xx, 5xx)
+        return json.dumps(json.loads(response.text)["data"])
+    
+    except requests.exceptions.RequestException as e:
+        return f"Error creating student: {str(e)}"
+
+@tool
 def find_student_by_lastname(lastname :str) -> str:
     """Retrieve student information based on likeness to last name."""
     log_tool_usage("find_student_by_lastname", lastname)
