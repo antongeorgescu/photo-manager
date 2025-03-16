@@ -64,7 +64,7 @@ def generate_student_profile() -> dict:
     """Generate a synthetic student profile."""
     student_profile = {
         'Name': fake.name(),
-        'Home Address': fake.street_address() + ', ' + random.choice(list(provinces_cities.keys())) + ', ' + fake.postalcode()
+        'Home Address': fake.street_address() + ', ' + random.choice(list(canadian_provinces.keys())) + ', ' + fake.postalcode()
     }
     log_tool_usage("generate_student_profile", student_profile)
     return student_profile
@@ -188,8 +188,8 @@ def generate_random_address(country: str = None) -> dict:
         region_data = us_states
         postal_code = f"{random.randint(10000, 99999)}"
     
-    region_name = region_data[region_code]['name']
     region_code = random.choice(list(region_data.keys()))
+    region_name = region_data[region_code]['name']
     city = random.choice(region_data[region_code]['cities'])
     
     address = {

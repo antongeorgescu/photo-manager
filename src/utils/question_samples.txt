@@ -1,12 +1,16 @@
 Individual Test Cases
 
-1. Generate with synthetic data a non registered student and validate the street address; if is not an accepted Canadian address, reject the student
-2. If it's a validated Canadian accepted address, add a communication profile with preference set to SMS. Keep the newly created student id and last name for further use.
-3. For the student created previously, add a synthetically generated loan of 36,000 CAD, set enrollment type to 'CAL', disbursement date on July 20, 2023,a random education institution and a random program of study. Hold on returned loan info id for subsequent use.
-4. Make a payment of 143CAD monthly against the loan with the retained loan info id
-5. Retrieve full information of the student created initially by searching on his last name retained at the first step
-6. Generate a home address, as a random choice between an American and Canadian location
-7. If it's a Canadian address, update the student home address with it and retrieve full information of the student; if not display an error message 
+1. Generate with synthetic data a non registered student and add a communication profile with preference set to SMS. Keep the newly created student id and last name for further use.
+2. Validate the home address and if is not an accepted Canadian address, prompt the user to manually enter a valid street address; validate the entered address again and then update the non registered student information
+3. Retrieve full information of the student as entered so far
+4. Under student profile add a synthetically generated loan of 32,000 CAD, set enrollment type to 'CAL', disbursement date on April 20, 2023,a random education institution and a random program of study. Hold on returned loan info id for subsequent use.
+5. Make a payment of 175CAD monthly against this loan
+6. Retrieve full information of the student
+7. Generate a home address, as a random choice between an American and Canadian location
+8. If it's an accepted Canadian address, update the student home address with it and retrieve full information of the student; if not prompt the user to modify manually the address
+9. Update the student address with the modified address
+10. Retrieve full information of the student
+11. Display all records of students having the same last name
 
 
 Test Plan Generation
