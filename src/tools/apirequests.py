@@ -88,11 +88,31 @@ def make_loan_payment(loanid:int, payamount:float) -> str:
 def update_student_address(studentid:int, homeaddress:str) -> str:
     """Update a student home address based on student id."""
     
+    log_tool_usage("update_student_address", {"studentid": studentid, "address": homeaddress})
     url = f"{BASE_URL}/student/update/address"
 
     payload = {
         "studentid":studentid,
         "homeAddress": homeaddress
+    }
+    
+    try:
+        response = requests.put(url, json=payload)
+        response.raise_for_status()  # Raises an HTTPError for bad responses (4xx, 5xx)
+        return json.dumps(json.loads(response.text)["data"])
+    
+    except requests.exceptions.RequestException as e:
+        return f"Error creating student: {str(e)}"
+    
+@tool
+def is_accepted_address(homeaddress:str) -> str:
+    """Validate if an address is an accepted Canadian location based on the list of provinces and postal code format."""
+    
+    log_tool_usage("is_canadian_address", {"address": homeaddress})
+    url = f"{BASE_URL}/student/address/iscanadian"
+
+    payload = {
+        "address": homeaddress
     }
     
     try:

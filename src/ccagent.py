@@ -47,6 +47,7 @@ tools = [
     apirequests.find_student_by_lastname,
     apirequests.make_loan_payment,
     apirequests.update_student_address,
+    apirequests.is_accepted_address,
     synthdata.generate_student_profile,
     synthdata.generate_loan_info,
     synthdata.generate_study_info,
@@ -54,8 +55,7 @@ tools = [
     synthdata.generate_communication_info,  
     synthdata.generate_random_education_institution,
     synthdata.generate_random_program_of_study,
-    synthdata.is_canadian_address,
-    # synthdata.generate_random_address,
+    synthdata.generate_random_address,
 ]
 
 llm_with_tools = llm.bind_tools(tools)
