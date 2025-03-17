@@ -11,6 +11,10 @@ A conversational AI assistant for call center operations that helps manage stude
 - Generate synthetic data for testing
 - Interactive command-line interface with Rich text formatting
 
+## Design Diagram
+
+![Image](https://github.com/user-attachments/assets/56bd45f1-3c42-497f-b0ed-9ee93976af65)
+
 ## Prerequisites
 
 - Python 3.x
