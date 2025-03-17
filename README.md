@@ -13,7 +13,7 @@ A conversational AI assistant for call center operations that helps manage stude
 
 ## Design Diagram
 
-![Image](https://github.com/user-attachments/assets/56bd45f1-3c42-497f-b0ed-9ee93976af65)
+![Image](https://github.com/user-attachments/assets/83cc5e46-6d3b-4330-bbc2-d5998dd63013)
 
 ## Prerequisites
 
