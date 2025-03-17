@@ -57,16 +57,32 @@ python src/ccagent.py
 
 ```
 .
+├── references/
+│   ├── openapi.yaml        # API specification
+│   └── testplan.txt        # API test plan
 ├── src/
-│   ├── ccagent.py          # Main application file
+│   ├── ccagent.py         # Main application file
 │   ├── tools/
-│   │   ├── ccactions.py    # Core business actions
-│   │   └── synthdata.py    # Synthetic data generation
+│   │   ├── ccactions.py   # Core business actions
+│   │   └── synthdata.py   # Synthetic data generation
 │   └── utils/
-│       └── logger.py       # Logging utilities
-├── requirements.txt        # Project dependencies
-└── .env                   # Environment variables (not in repo)
+│       ├── logger.py      # Logging utilities
+│       └── question_samples.txt  # Sample test scenarios
+├── tests/
+│   └── test_ccagent.py    # Unit tests
+├── .env.example           # Environment variables template
+├── .gitignore            # Git ignore rules
+├── README.md             # Project documentation
+└── requirements.txt      # Project dependencies
 ```
+
+Key components:
+- `src/` - Source code directory
+  - `ccagent.py` - Main application with CLI interface
+  - `tools/` - Core functionality modules
+  - `utils/` - Helper utilities and logging
+- `references/` - API documentation and test plans
+- `tests/` - Test suites and test data
 
 ## Dependencies
 
