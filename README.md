@@ -11,7 +11,11 @@ A conversational AI assistant for call center operations that helps manage stude
 - Generate synthetic data for testing
 - Interactive command-line interface with Rich text formatting
 
-## Design Diagram
+## Concept Design
+
+![Image](https://github.com/user-attachments/assets/9b02d15d-692f-448b-a7c5-5a9d8c3ca5d2)
+
+## High-level Design Diagram
 
 ![Image](https://github.com/user-attachments/assets/83cc5e46-6d3b-4330-bbc2-d5998dd63013)
 
