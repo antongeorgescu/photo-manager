@@ -1,4 +1,4 @@
-# Call Centre Agent Assistant
+# Agentic AI Multi-Agent Assistant
 
 A conversational AI assistant for call center operations that helps manage student information, loans, and communications using Azure OpenAI and LangChain.
 
@@ -13,11 +13,20 @@ A conversational AI assistant for call center operations that helps manage stude
 
 ## Concept Design
 
-![Image](https://github.com/user-attachments/assets/9b02d15d-692f-448b-a7c5-5a9d8c3ca5d2)
+The solution is Agentic AI centric, with the user interface business logic controlled on-fly by prompts provided either by manual operator or automation job.
+
+
+![Image](https://github.com/user-attachments/assets/6eac2a79-dd35-4e42-ba25-ffd5eccf982d)
 
 ## High-level Design Diagram
 
-![Image](https://github.com/user-attachments/assets/83cc5e46-6d3b-4330-bbc2-d5998dd63013)
+The design contains four AI Agentic agents that are specialized for different tasks and can communicate with each other:
+* **API Agent** selects the right API endpoint and provides the required parameters extracted from the prompt
+* **Synth Data Agent** generates the data required for test in cvarious formats specified in the prompt
+* **Database Agent** queries the data in the database after a select or an update operation triggered by **API Agent**, and validates it
+* **QA Agent** reads the openapi.yaml file and provides a test plan according to the prompt requirements. It also collects the tests results and renders reports back to the user as per prompt. 
+
+![Image](https://github.com/user-attachments/assets/a8684849-211e-4af8-82bb-f4b838e95243)
 
 ## Prerequisites
 
