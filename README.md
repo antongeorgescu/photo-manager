@@ -28,6 +28,12 @@ The design contains four AI Agentic agents that are specialized for different ta
 
 ![Image](https://github.com/user-attachments/assets/a8684849-211e-4af8-82bb-f4b838e95243)
 
+## Agent Collaboration
+
+The four agents collaborate with each other in many ways. The following diagram depicts one of the following scenarios:
+
+![Image](https://github.com/user-attachments/assets/09aaa3d3-5463-4197-9f5f-e1daaae47521)
+
 ## Prerequisites
 
 - Python 3.x
