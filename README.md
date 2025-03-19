@@ -32,7 +32,7 @@ The design contains four AI Agentic agents that are specialized for different ta
 
 The four agents collaborate with each other in many ways. The following diagram depicts one of the possible scenarios:
 
-![Image](https://github.com/user-attachments/assets/09aaa3d3-5463-4197-9f5f-e1daaae47521)
+![Image](https://github.com/user-attachments/assets/deaa24ce-9322-4a74-93f7-9c24c8c92f6b)
 
 ## Prerequisites
 
