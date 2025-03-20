@@ -28,9 +28,44 @@ The design contains four AI Agentic agents that are specialized for different ta
 
 ![Image](https://github.com/user-attachments/assets/a8684849-211e-4af8-82bb-f4b838e95243)
 
-## Agent Collaboration
+## Multiple Agent Collaboration
 
-The four agents collaborate with each other in many ways. The following diagram depicts one of the possible scenarios:
+The four agents collaborate with each other in many ways. They invoke each other by using **dynamic agent invocation** The following code sample captures one of the possible scenarios:
+
+```
+from langchain.agents import ApiRequestAgent, SynthDataAgent
+
+# Define agent descriptions
+agents = {
+    "ApiRequestAgent": {
+        "description": "Make requests to a wide variety of API endpoints.",
+        "agent": ApiRequestAgent()
+    },
+    "SynthDataAgent": {
+        "description": "Generates synthetic data used for test automation.",
+        "agent": SynthDataAgent()
+    }
+}
+
+# Function to invoke agent based on description
+def invoke_agent(agent_name, *args, **kwargs):
+    agent_info = agents.get(agent_name)
+    if agent_info:
+        print(f"Invoking {agent_name}: {agent_info['description']}")
+        return agent_info'agent'
+    else:
+        raise ValueError(f"Agent {agent_name} not found.")
+
+# Example usage
+data_request = "Get a student profile with synthetic data."
+synth_data = invoke_agent("SynthDataAgent", data_request)
+api_request = "Use the data to create a non-registered student record and add a communication profile with preference set to SMS."
+api_result = invoke_agent("ApiRequestAgent", api_request)
+
+print(api_result)
+```
+
+The following diagram shows a scenario with 4 agents that collaborate with each other:
 
 ![Image](https://github.com/user-attachments/assets/deaa24ce-9322-4a74-93f7-9c24c8c92f6b)
 
