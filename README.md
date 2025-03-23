@@ -67,7 +67,7 @@ print(api_result)
 
 The following diagram shows a scenario with 4 agents that collaborate with each other:
 
-![Image](https://github.com/user-attachments/assets/898f1da0-4033-4d17-a962-2c410f1817ea)
+![Image](https://github.com/user-attachments/assets/b47f837f-c623-4a6f-84b4-b25df9328d80)
 
 ## Prerequisites
 
