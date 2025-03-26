@@ -31,6 +31,11 @@ logging.getLogger('langchain.agent').setLevel(logging.WARNING)
 from tools import apirequests, synthdata
 from utils import logger
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv(dotenv_path="./.env")
+
 llm = AzureChatOpenAI(
     openai_api_key = os.getenv("AZURE_OPENAI_API_KEY"),
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
