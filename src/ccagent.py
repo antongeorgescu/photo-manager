@@ -19,6 +19,9 @@ from rich.layout import Layout
 from rich import print
 from rich.markdown import Markdown
 
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
+import debugpy
+
 import sys
 sys.path.append('/src')
 
@@ -41,7 +44,11 @@ llm = AzureChatOpenAI(
     azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
     azure_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT_NAME"),
     openai_api_version = os.getenv("AZURE_OPENAI_API_VERSION"),
-    max_retries = 3
+    max_retries = 3,
+    verbose = True,
+    # temperature=0.2,
+    # max_tokens=2000  # Adjust this value as needed
+
 )
 
 # Define the tools: deliberatley eliminate some of them and use GenAI to fulfill the task  
@@ -94,6 +101,8 @@ agent = (
 )
 agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=False)
 
+
+
 async def main():
     chat_history = []
 
@@ -124,6 +133,9 @@ async def main():
     display_header()
     display_help() 
 
+    # Create ProcessPoolExecutor once
+    executor = ProcessPoolExecutor() if not debugpy.is_client_connected() else None
+
     while True:
         try:
             # print("Enter question or type exit to quit")
@@ -136,9 +148,15 @@ async def main():
                 continue
             
             loop = asyncio.get_event_loop()
-            with console.status("[bold blue]Thinking...[/bold blue]"):
-                result = await loop.run_in_executor(None, lambda: agent_executor.invoke({"input":user_input , "chat_history": chat_history}))
 
+            if debugpy.is_client_connected():
+                console.print("[cyan]Running in debug mode[/cyan]")
+                with console.status("[bold blue]Thinking...[/bold blue]"):
+                    result = await loop.run_in_executor(None, lambda: agent_executor.invoke({"input": user_input, "chat_history": chat_history}))
+            else:
+                with console.status("[bold blue]Thinking...[/bold blue]"):
+                    result = await loop.run_in_executor(executor, execute_agent,user_input,chat_history)
+                
             chat_history.extend(
                 [
                     HumanMessage(content=user_input),
@@ -160,7 +178,23 @@ async def main():
             console.print("\n[yellow]Exiting...[/yellow]")
             break
         except Exception as e:
-            console.print(f"[red]Error: {str(e)}[/red]")     
+            console.print(f"[red]Error: {str(e)}[/red]")    
+    
+    # Ensure the executor is properly shutdown
+    if executor:
+        executor.shutdown(wait=True)
+            
+
+def execute_agent(input_text, history):
+    """Execute agent with given input and chat history."""
+    return agent_executor.invoke({
+        "input": input_text, 
+        "chat_history": history
+    })
+
+def is_debug_mode() -> bool:
+    """Check if running in debug mode."""
+    return sys.gettrace() is not None
 
 if __name__ == "__main__":
     asyncio.run(main())
