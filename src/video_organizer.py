@@ -3,8 +3,9 @@ import subprocess
 import json
 import sys
 import os
-from datetime import datetime
+import datetime
 import shutil
+import init_ffmpeg
 
 # Source directory with photos
 source_dir = Path(os.getenv("MEDIA_SOURCE_PATH"))
@@ -45,6 +46,7 @@ def get_creation_date(file_path):
 
 def process_folder(folder_path):
     exceptions = 0
+    total_files = 0
     for file in os.listdir(folder_path):
         if file.lower().endswith(('.mov', '.mp4')):
             file_path = os.path.join(folder_path, file)
@@ -57,31 +59,40 @@ def process_folder(folder_path):
                 if creation_date.endswith('Z'):
                     creation_date = creation_date[:-1]
                 try:
-                    last_modified = datetime.datetime.fromisoformat(creation_date)
+                    creation_date_upd = datetime.datetime.fromisoformat(creation_date)
                 except AttributeError:
                     # For Python < 3.7, fallback to strptime
-                    last_modified = datetime.datetime.strptime(creation_date, "%Y-%m-%dT%H:%M:%S")
-                year = str(last_modified.year)
-                month = last_modified.strftime("%B")  # Full month name
+                    creation_date_upd = datetime.datetime.strptime(creation_date, "%Y-%m-%dT%H:%M:%S")
+                year = str(creation_date_upd.year)
+                month = creation_date_upd.strftime("%B")  # Full month name
                 
                 # Print file info
-                print(f"File: {file_path.name}")
+                print(f"File: {file}")
                 print(f"Year: {year}")
                 print(f"Month: {month}")
 
                 # Create target directory path
-                target_dir = target_dir / year / month
+                target_dir_new = f"{target_dir}/{year}/{month}"
                 
                 # Create directory if it doesn't exist
-                target_dir.mkdir(parents=True, exist_ok=True)
+                os.makedirs(target_dir_new, exist_ok=True)
                 
                 # Move file to new location
-                shutil.move(str(file), str(target_dir / file.name))
+                shutil.move(str(file_path), f"{target_dir_new}/{file}")
+                total_files += 1
 
             else:
                 print("Creation date not found in metadata.")
                 exceptions += 1
+    if exceptions > 0:
+        print(f"Process completed with {exceptions} files with exceptions.")
+    return total_files
             
-    print(f"Process completed with {exceptions} files with exceptions.")
-
-process_folder(source_dir)
+if __name__ == "__main__":
+    try:
+        init_ffmpeg.add_ffmpeg_to_path()
+        
+        files_processed = process_folder(source_dir)
+        print(f"Video files processing completed successfully: {files_processed} files organized.")
+    except Exception as e:
+        print(f"An error occurred: {str(e)}")

@@ -29,8 +29,6 @@ def run_pipeline():
     # Define script paths
     scripts_dir = Path(__file__).parent
     scripts = [
-        scripts_dir / "init_ffmpeg.py",
-        scripts_dir / "photo_attributes.py",
         scripts_dir / "photo_organizer.py",
         scripts_dir / "video_organizer.py"
     ]
