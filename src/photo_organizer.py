@@ -4,10 +4,10 @@ from pathlib import Path
 import shutil
 
 # Source directory with photos
-source_dir = Path(os.getenv("PHOTO_SOURCE_PATH"))
+source_dir = Path(os.getenv("MEDIA_SOURCE_PATH"))
 
 # Target directory for organized photos
-target_dir = Path(os.getenv("PHOTO_DESTINATION_PATH"))
+target_dir = Path(os.getenv("MEDIA_DESTINATION_PATH"))
 
 def organize_photos(source_path,target_path):
     # Get all files recursively, excluding directories

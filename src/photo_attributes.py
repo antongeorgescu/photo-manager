@@ -43,4 +43,5 @@ def process_folder(folder_path):
                 print(f"No EXIF data found for {filename}")
                 exceptions += 1
     print(f"Process completed with {exceptions} files with exceptions.")
+
 process_folder(folder_path)
