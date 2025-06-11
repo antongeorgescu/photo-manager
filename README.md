@@ -1,12 +1,12 @@
 # Photo Manager Pipeline
 
 
-## Handling Multimedia Files with ffmpeg
+## Handling mltimedia files' attributes with ffmpeg
 
 FFmpeg is a powerful, open-source software suite used for handling multimedia data—specifically video, audio, and image processing. It’s widely used by developers, video editors, and media professionals for tasks like conversion, compression, streaming, and analysis.
 
 ---
-### What FFmpeg Can Do
+### What FFmpeg can do
 Here are some of its most common capabilities:
 
 * Convert between media formats (e.g., .mov to .mp4)
@@ -18,7 +18,7 @@ Here are some of its most common capabilities:
 * Generate thumbnails from videos
 
 ---
-### Key Tools in FFmpeg
+### Key tools in FFmpeg
 
 | Tool        | Purpose                                     |
 |------------------|----------------------------------------|
@@ -27,7 +27,7 @@ Here are some of its most common capabilities:
 | ffplay      | Lightweight media player for quick previews |
 
 ---
-### Examples of Command
+### Examples of commands
 * Convert a .mov file to .mp4:
 
     ffmpeg -i input.mov output.mp4
@@ -39,5 +39,19 @@ Here are some of its most common capabilities:
 ---
 ### Install ffmpeg
 The FFmpeg binaries can be downloaded from https://www.gyan.dev/ffmpeg/builds/ under "release builds" section
+
+---
+
+## Detect objects in images with YOLO
+
+YOLO is a lighweight model that can do real-time object detection in both photo and video files.
+It is a vision-only model (not a language model)
+YOLO is fast, accurate and easy to run on CPU or GPU, on local computers
+
+### Install YOLO
+YOLO is presented as a Python package, and to install it run
+
+    pip install ultralytics
+
 
 
