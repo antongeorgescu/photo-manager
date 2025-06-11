@@ -10,7 +10,11 @@ def add_ffmpeg_to_path():
     
     # Path to the folder containing ffprobe.exe
     current_folder = Path.cwd()
-    ffmpeg_bin_path = f"{current_folder}\\ffmpeg\\bin"
+    # Construct the path to the ffmpeg binary
+    if not (current_folder / "ffmpeg-7.1.1-essentials_build" / "bin").exists():
+        print("ERROR: ffmpeg directory not found in the current folder.", flush=True)
+        return
+    ffmpeg_bin_path = f"{current_folder}\\ffmpeg-7.1.1-essentials_build\\bin"
     print(f"ffmpeg path: {current_folder}")
 
     # Add it to the PATH environment variable
