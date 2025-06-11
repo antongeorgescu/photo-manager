@@ -63,7 +63,7 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
-ffmpeg/
+ffmpeg-7.1.1-essentials_build/
 playground/
 sample_media/
 runs/
