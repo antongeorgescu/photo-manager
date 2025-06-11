@@ -77,8 +77,12 @@ def process_folder(folder_path):
                 # Create directory if it doesn't exist
                 os.makedirs(target_dir_new, exist_ok=True)
                 
-                # Move file to new location
-                shutil.move(str(file_path), f"{target_dir_new}/{file}")
+                # Move file to new location; only move if destination doesn't exist
+                destination_file = Path(f"{target_dir_new}/{file}")
+
+                if not destination_file.exists():
+                    shutil.move(str(file_path), f"{target_dir_new}/{file}")
+
                 total_files += 1
 
             else:

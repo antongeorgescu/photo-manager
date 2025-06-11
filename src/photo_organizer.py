@@ -85,8 +85,10 @@ def organize_photos(source_path,target_path, unprocessed_files):
         # Create directory if it doesn't exist
         target_dir.mkdir(parents=True, exist_ok=True)
         
-        # Move file to new location
-        shutil.move(str(file), str(target_dir / file.name))
+        # Move file to new location; only move if destination doesn't exist
+        if not os.path.exists(target_dir / file.name):
+            shutil.move(str(file), str(target_dir / file.name))
+        
         total_files += 1
     return total_files
 
